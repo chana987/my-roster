@@ -1,0 +1,65 @@
+
+@font-face {
+  font-family: "superstarm54";
+  src: url(/fonts/superstarm54.woff);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "superstarm54", serif;
+  font-variant: small-caps;
+  font-size: 22px;
+  font-weight: 500;
+  color: rgb(51, 50, 50);
+}
+
+.container {
+  background: rgb(51, 50, 50);
+  min-height: 100vh;
+}
+
+#input,
+#input:focus {
+  width: 55vw;
+  padding: 5px;
+  margin: 7px;
+  border: 2px solid rgb(243, 132, 41);
+  border-radius: 3px;
+  outline: none;
+  background: rgb(51, 50, 50);
+  color: rgb(243, 132, 41);
+}
+
+#submit,
+#submit:focus {
+  padding: 5px;
+  margin: 7px;
+  width: 30vw;
+  background: rgb(243, 132, 41);
+  border: 2px solid rgb(243, 132, 41);
+  border-radius: 3px;
+  outline: none;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.player {
+  background: rgb(243, 132, 41);
+  border-radius: 3px;
+  text-align: center; 
+  padding: 5px;
+  margin: 7px;
+}
+
+.player_photo {
+  width: 80%;
+  min-height: 64%;
+  border: 2px solid rgb(51, 50, 50);
+  border-radius: 3px;
+  cursor: pointer;
+}

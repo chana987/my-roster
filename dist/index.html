@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt&display=swap" rel="stylesheet">
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <input id="input" type="text" placeholder="Enter your team name"/>
+      <button id="submit">Show me team</button>
+
+      <div class="results">
+
+      </div>
+    </div>
+
+    <script id="player-template" type="text/x-handlebars-template">
+      {{#each data}}
+      <div class="player" data-name="{{this.lastName}}-{{this.firstName}}">
+          <p class="player_name">{{this.firstName}} {{this.lastName}}</p>
+          <p class="player_jersey">{{this.jersey}}</p>
+          <div class="player_detail">
+              <img class="player_photo" src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}" alt="photo of {{this.firstName}} {{this.lastName}}" onerror='this.src="images/basketball_player.jpg"'>
+          </div>
+          <p class="player_pos">{{this.pos}}</p>
+      </div>
+      {{/each}}
+    </script>
+
+    <script id="player-stats-template" type="text/x-handlebars-template">
+      <p>{{data}}</p>
+    </script>
+
+    <script src="./jquery/dist/jquery.js"></script>
+    <script src="./handlebars/dist/handlebars.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
