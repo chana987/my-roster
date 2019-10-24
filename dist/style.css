@@ -32,15 +32,25 @@
   color: rgb(243, 132, 41);
 }
 
-#submit,
-#submit:focus {
+button,
+button:focus {
   padding: 5px;
   margin: 7px;
-  width: 30vw;
   background: rgb(243, 132, 41);
   border: 2px solid rgb(243, 132, 41);
   border-radius: 3px;
   outline: none;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+button:hover {
+  font-size: 18px;
+  padding: 7.5px;
+}
+
+#submit {
+  width: 30vw;
 }
 
 .results {

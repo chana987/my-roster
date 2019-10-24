@@ -12,6 +12,7 @@
     <div class="container">
       <input id="input" type="text" placeholder="Enter your team name"/>
       <button id="submit">Show me team</button>
+      <button id="dream-team">Dream Team</button>
 
       <div class="results">
 
@@ -24,9 +25,12 @@
           <p class="player_name">{{this.firstName}} {{this.lastName}}</p>
           <p class="player_jersey">{{this.jersey}}</p>
           <div class="player_detail">
-              <img class="player_photo" src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}" alt="photo of {{this.firstName}} {{this.lastName}}" onerror='this.src="images/basketball_player.jpg"'>
+              <img class="player_photo" 
+              src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}" 
+              alt="photo of {{this.firstName}} {{this.lastName}}" onerror='this.src="images/basketball_player.jpg"'>
           </div>
           <p class="player_pos">{{this.pos}}</p>
+          <button id="super-player">Add to Dream Team</button>
       </div>
       {{/each}}
     </script>
@@ -37,6 +41,7 @@
 
     <script src="./jquery/dist/jquery.js"></script>
     <script src="./handlebars/dist/handlebars.js"></script>
+    <script src="APIManager.js"></script>
     <script src="Renderer.js"></script>
     <script src="main.js"></script>
   </body>
