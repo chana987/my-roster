@@ -13,6 +13,7 @@
       <input id="input" type="text" placeholder="Enter your team name"/>
       <button id="submit">Show me team</button>
       <button id="dream-team">Dream Team</button>
+      <button id="save-team">Save Dream Team</button>
 
       <div class="results">
 
@@ -30,7 +31,23 @@
               alt="photo of {{this.firstName}} {{this.lastName}}" onerror='this.src="images/basketball_player.jpg"'>
           </div>
           <p class="player_pos">{{this.pos}}</p>
-          <button id="super-player">Add to Dream Team</button>
+          <button class="super-player">Add to Dream Team</button>
+      </div>
+      {{/each}}
+    </script>
+
+    <script id="dream-team-template" type="text/x-handlebars-template">
+      {{#each data}}
+      <div class="player" data-name="{{this.lastName}}-{{this.firstName}}">
+          <p class="player_name">{{this.firstName}} {{this.lastName}}</p>
+          <p class="player_jersey">{{this.jersey}}</p>
+          <div class="player_detail">
+              <img class="player_photo" 
+              src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}" 
+              alt="photo of {{this.firstName}} {{this.lastName}}" onerror='this.src="images/basketball_player.jpg"'>
+          </div>
+          <p class="player_pos">{{this.pos}}</p>
+          <button class="delete-player">Remove from Dream Team</button>
       </div>
       {{/each}}
     </script>

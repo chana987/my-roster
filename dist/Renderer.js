@@ -7,6 +7,14 @@ class Renderer {
     const newHTML = template({data})
     $(".results").empty().append(newHTML)
   }
+ 
+  renderDream(data) {
+    console.log("reached renderer")
+    const source = $("#dream-team-template").html()
+    const template = Handlebars.compile(source)
+    const newHTML = template({data})
+    $(".results").empty().append(newHTML)
+  }
 
   renderPlayerStats(data) {
     console.log(data)

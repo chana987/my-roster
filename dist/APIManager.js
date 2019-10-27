@@ -14,7 +14,13 @@ class APIManager {
 
   getDreamTeam() {
     $.get('/dreamTeam', function(data){
-      renderer.render(data)
+      renderer.renderDream(data)
+    })
+  }
+
+  saveDreamTeam() {
+    $.get('/dreamTeam', function(data){
+      localStorage.dreamTeam = data
     })
   }
 
@@ -23,5 +29,15 @@ class APIManager {
       console.log("POST complete")
     })
   }
-}
 
+  removeSuperPlayer(playerName) {
+    $.ajax({
+      method: 'DELETE',
+      url: '/roster/${playerName}',
+      success: function (response) {
+        console.log("DELETE complete")
+        renderer.render(response)
+      }
+    })
+  }
+}

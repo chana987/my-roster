@@ -16,7 +16,16 @@ $("#dream-team").on("click", function() {
   apiManager.getDreamTeam()
 })
 
-$(".results").on("click", "#super-player", function() {
+$("#save-team").on("click", function() {
+  apiManager.saveDreamTeam()
+})
+
+$(".results").on("click", ".super-player", function() {
   let playerName = $(this).closest(".player").data("name")
   apiManager.addSuperPlayer(playerName)
+})
+
+$(".results").on("click", ".delete-player", function() {
+  let playerName = $(this).closest(".player").data("name")
+  apiManager.removeSuperPlayer(playerName)
 })

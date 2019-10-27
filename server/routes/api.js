@@ -37,10 +37,11 @@ router.get('/playerStats/:lastName/:firstName', function(req, res) {
   function(err, response) {
     if (data) {
       let data = JSON.parse(response.body)
+      res.send(data)
     } else {
       let data = {name: "Sorry, this player has no available stats"}
+      res.send(data)
     }
-    res.send(data)
   })
 })
 
@@ -59,8 +60,24 @@ router.get('/dreamTeam', function(req, res) {
 router.post('/roster', function(req, res) {
   let player = req.body.playerName.split("-")
   let superPlayer = json.data.filter(p => p.firstName === player[1]).filter(p => p.lastName === player[0])
-  dreamTeam.push(superPlayer[0])
+  console.log(superPlayer)
+  let exists = dreamTeam.indexOf(superPlayer[0])
+  console.log(exists)
+  if (exists === -1) {
+    dreamTeam.push(superPlayer[0])
+    console.log("Added player to your roster")
+  } else {
+    console.log("Player is already in your roster")
+  }
   res.end()
+})
+
+router.delete('/roster/:playerName', function(req, res) {
+  let player = req.params.playerName.split("-")
+  let superPlayer = dreamTeam.filter(p => p.firstName === player[1]).filter(p => p.lastName === player[0])
+  let playerIndex = dreamTeam.indexOf(superPlayer[0])
+  dreamTeam.splice(playerIndex, 1)
+  res.send(dreamTeam)
 })
 
 module.exports = router
