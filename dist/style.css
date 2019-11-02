@@ -49,8 +49,17 @@ button:hover {
   padding: 7.5px;
 }
 
-#submit {
+#submit,
+#dream-team,
+#save-team,
+#delete-team {
   width: 30vw;
+}
+
+.invalid-message {
+  color: rgb(243, 132, 41);
+  padding-left: 10px;
+  font-size: 16px;
 }
 
 .results {
@@ -64,12 +73,21 @@ button:hover {
   text-align: center; 
   padding: 5px;
   margin: 7px;
+  display: grid;
+  grid-template-rows: 13% 12% 50% 12% 13%;
+  align-items: center;
 }
 
 .player_photo {
   width: 80%;
-  min-height: 64%;
+  height: 100%;
   border: 2px solid rgb(51, 50, 50);
   border-radius: 3px;
   cursor: pointer;
+  overflow: hidden;
+}
+
+.dream-controls {
+  display: none;
+  
 }

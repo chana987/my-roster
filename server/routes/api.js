@@ -1,49 +1,58 @@
 const express = require('express')
 const request = require('request')
 const router = express.Router()
-const teamToIDs = require('../teamToIDs')
+// const teamToIDs = require('../teamToIDs')
 const dreamTeam = require('../dreamTeam')
 
+const TeamID = require('../models/TeamID')
+// teamToIDs.forEach(t => new TeamID({
+//   name: t.simpleName,
+//   teamID: t.teamId
+// }).save())
+
 const json = {
-  data: {}
+  data: []
 }
 
-request(`http://data.nba.net/10s/prod/v1/2018/players.json`, (err, res) => { 
-  let data = JSON.parse(res.body).league.standard 
-  data = data.filter(p => p.isActive === true)
-  let teamData = []
-
-  data.forEach(p => {
-    const { firstName, lastName, jersey, pos, teamId } = p 
-    teamData.push({ firstName, lastName, jersey, pos, teamId })
-  })
-  
-  json.data = teamData
-})
+const getData = function() {
+  request(`http://data.nba.net/10s/prod/v1/2018/players.json`, ((err, res) => { 
+    let data = JSON.parse(res.body).league.standard 
+    data = data.filter(p => p.isActive === true)
+    data.forEach(p => {
+      const { firstName, lastName, jersey, pos, teamId } = p 
+      json.data.push({ firstName, lastName, jersey, pos, teamId })
+    })
+  })  
+)}
+getData()
 
 router.get('/', function(req, res) {
   res.send("Server is up and running smoothly")
 })
 
 router.get('/teams/:teamName', function(req, res) {
-  let teamId = teamToIDs[req.params.teamName]
-  let data = json.data.filter(p => p.teamId === teamId)
-  
-  res.send(data)
+  let teamName = req.params.teamName.trim().replace(/^./, req.params.teamName[0].toUpperCase())
+  TeamID.findOne({ name: teamName })
+  .exec(
+    (err, team) => {
+      
+      let data = json.data.filter(p => p.teamId == team.teamID)
+      res.send(data)
+    })
 })
 
-router.get('/playerStats/:lastName/:firstName', function(req, res) {
-  request(`https://nba-players.herokuapp.com/players-stats/${req.params.lastName}/${req.params.firstName}`, 
-  function(err, response) {
-    if (data) {
-      let data = JSON.parse(response.body)
-      res.send(data)
-    } else {
-      let data = {name: "Sorry, this player has no available stats"}
-      res.send(data)
-    }
-  })
-})
+// router.get('/playerStats/:lastName/:firstName', function(req, res) {
+//   request(`https://nba-players.herokuapp.com/players-stats/${req.params.lastName}/${req.params.firstName}`, 
+//   function(err, data) {
+//     if (data) {
+//       let data = JSON.parse(data.body)
+//       res.send(data)
+//     } else {
+//       let data = {name: "Sorry, this player has no available stats"}
+//       res.send(data)
+//     }
+//   })
+// })
 
 router.put('/team', function(req, res) {
   let teamName = req.body.name

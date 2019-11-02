@@ -5,12 +5,13 @@ class APIManager {
     })
   }
 
-  getStats(playerName) {
-    let name = playerName.split("-")
-    $.get(`/playerStats/${name[0]}/${name[1]}`, function(data) {
-      renderer.renderPlayerStats(data)
-    })
-  }
+  // getStats(playerName) {
+  //   let name = playerName.split("-")
+  //   console.log(name)
+  //   $.get(`/playerStats/${name[0]}/${name[1]}`, function(data) {
+  //     renderer.renderPlayerStats(data)
+  //   })
+  // }
 
   getDreamTeam() {
     $.get('/dreamTeam', function(data){
